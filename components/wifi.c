@@ -66,6 +66,53 @@
 	}
 
 	const char *
+	wifi_state(const char *interface)
+	{
+		int cur;
+		char *p;
+		char path[PATH_MAX];
+		char status[5];
+		FILE *fp;
+
+		if (esnprintf(path, sizeof(path), NET_OPERSTATE, interface) < 0)
+			return NULL;
+		if (!(fp = fopen(path, "r"))) {
+			warn("fopen '%s':", path);
+			return NULL;
+		}
+		p = fgets(status, 5, fp);
+		fclose(fp);
+		if (!p || strcmp(status, "up\n") != 0)
+			return "Disconnected";
+
+    return "Connected";
+	}
+
+/* TODO: Abstract state retrieval */
+	const char *
+	wifi_state_icon(const char *interface)
+	{
+		int cur;
+		char *p;
+		char path[PATH_MAX];
+		char status[5];
+		FILE *fp;
+
+		if (esnprintf(path, sizeof(path), NET_OPERSTATE, interface) < 0)
+			return NULL;
+		if (!(fp = fopen(path, "r"))) {
+			warn("fopen '%s':", path);
+			return NULL;
+		}
+		p = fgets(status, 5, fp);
+		fclose(fp);
+		if (!p || strcmp(status, "up\n") != 0)
+			return "";
+
+    return "";
+	}
+
+	const char *
 	wifi_essid(const char *interface)
 	{
 		static char id[IW_ESSID_MAX_SIZE+1];

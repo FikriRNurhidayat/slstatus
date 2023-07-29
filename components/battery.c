@@ -54,16 +54,35 @@
 	{
 		static struct {
 			char *state;
-			char *symbol;
+			char **symbol;
 		} map[] = {
-			{ "Charging",     "+" },
-			{ "Discharging",  "-" },
-			{ "Full",         "o" },
-			{ "Not charging", "o" },
+			{ "Charging",  NULL },
+			{ "Discharging",  NULL },
+			{ "Full",         NULL },
+			{ "Not charging", NULL },
 		};
+
+    static char chargingSymbols[][4] = { "" };
+    static char dischargingSymbols[][4] = { "","","","", "" };
+    static char fullSymbols[][4] = { "" };
+    static char notChargingSymbols[][4] = { "" };
+
+    map[0].symbol = chargingSymbols;
+    map[1].symbol = dischargingSymbols;
+    map[2].symbol = fullSymbols;
+    map[3].symbol = notChargingSymbols;
+    
+    int cap_perc;
+		char cap_path[PATH_MAX];
+    int cap_i;
 		size_t i;
+    char *x;
 		char path[PATH_MAX], state[12];
 
+    if (esnprintf(cap_path, sizeof(cap_path), POWER_SUPPLY_CAPACITY, bat) < 0)
+			return NULL;
+		if (pscanf(cap_path, "%d", &cap_perc) != 1)
+			return NULL;
 		if (esnprintf(path, sizeof(path), POWER_SUPPLY_STATUS, bat) < 0)
 			return NULL;
 		if (pscanf(path, "%12[a-zA-Z ]", state) != 1)
@@ -73,7 +92,12 @@
 			if (!strcmp(map[i].state, state))
 				break;
 
-		return (i == LEN(map)) ? "?" : map[i].symbol;
+    if (!strcmp(map[i].state, "Discharging")) {
+      int cap_i = (cap_perc - 1) / 20;
+      return dischargingSymbols[cap_i];
+    };
+
+    return map[i].symbol;
 	}
 
 	const char *
