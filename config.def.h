@@ -46,6 +46,7 @@ static const char unknown_str[] = "n/a";
  * ram_total           total memory size in GB         NULL
  * ram_used            used memory in GB               NULL
  * run_command         custom shell command            command (echo foo)
+ * separator           Separator ofc                   NULL
  * swap_free           free swap in GB                 NULL
  * swap_perc           swap usage in percent           NULL
  * swap_total          total swap size in GB           NULL
@@ -64,6 +65,8 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	/* function     format           argument */
+  { battery_perc,  " %s%%",       "BAT0"      },
+  { separator,     "%s",           " "         },
+	{ datetime,      "%s",           "%H:%M"     }
 };
