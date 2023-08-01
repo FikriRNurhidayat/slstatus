@@ -83,9 +83,9 @@
 		p = fgets(status, 5, fp);
 		fclose(fp);
 		if (!p || strcmp(status, "up\n") != 0)
-			return "No Internet";
+			return "Not Connected";
 
-    return "Internet";
+    return "Connected";
 	}
 
 /* TODO: Abstract state retrieval */

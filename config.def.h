@@ -68,9 +68,9 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function     format                           argument */
-  { netspeed_rx,      "󰅃  %s",                        "wlp0s20f3" },
+  { netspeed_tx,      "󰅃  %s",                        "wlp0s20f3" },
   { separator,        "%s",                           "    "      },
-  { netspeed_tx,      "󰅀  %s",                        "wlp0s20f3" },
+  { netspeed_rx,      "󰅀  %s",                        "wlp0s20f3" },
   { separator,        "%s",                           "    "      },
   { wifi_state_icon,  "%s",                           "wlp0s20f3" },
   { separator,        "%s",                           "  "        },
