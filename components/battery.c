@@ -62,10 +62,10 @@
 			{ "Not charging", NULL },
 		};
 
-    static char chargingSymbols[][4] = { "" };
-    static char dischargingSymbols[][4] = { "","","","", "" };
-    static char fullSymbols[][4] = { "" };
-    static char notChargingSymbols[][4] = { "" };
+    static char chargingSymbols[][10] = { "󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅" };
+    static char dischargingSymbols[][10] = { "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" };
+    static char fullSymbols[][4] = { "󰁹" };
+    static char notChargingSymbols[][4] = { "󰂃" };
 
     map[0].symbol = chargingSymbols;
     map[1].symbol = dischargingSymbols;
@@ -93,8 +93,13 @@
 				break;
 
     if (!strcmp(map[i].state, "Discharging")) {
-      int cap_i = (cap_perc - 1) / 20;
+      int cap_i = (cap_perc - 1) / 10;
       return dischargingSymbols[cap_i];
+    };
+
+    if (!strcmp(map[i].state, "Charging")) {
+      int cap_i = (cap_perc - 1) / 10;
+      return chargingSymbols[cap_i];
     };
 
     return map[i].symbol;
