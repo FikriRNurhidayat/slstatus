@@ -68,19 +68,16 @@ static const char unknown_str[] = "  ";
  */
 static const struct arg args[] = {
 	/* function     format                           argument */
-  { netspeed_tx,      "󰅃 %s",                      "wlp0s20f3" },
-  { separator,        "%s",                        "    "      },
-  { netspeed_rx,      "󰅀 %s",                      "wlp0s20f3" },
-  { separator,        "%s",                        "    "      },
   { wifi_state_icon,  "%s",                        "wlp0s20f3" },
-  { separator,        "%s",                        "    "      },
+  { separator,        "%s",                        "  "        },
   { battery_state,    "%s",                        "BAT0"      },
   { separator,        "%s",                        " "         },
   { battery_perc,     "%s%%",                      "BAT0"      },
-  { separator,        "%s",                        "    "      },
+  { separator,        "%s",                        "  "        },
   { datetime,         "%s",                        "%d %B %Y"  },
-  { separator,        "%s",                        "    "      },
+  { separator,        "%s",                        "  "        },
 	{ datetime,         "%s",                        "%H:%M"     },
-  { separator,        "%s",                        "    "      },
-  { datetime,         "^B2^^C0^ %s ^d^",           "Week %W"   },
+  { separator,        "%s",                        "  "        },
+  { datetime,         "%s",                        "Week %W"   },
+  { separator,        "%s",                        "  "        },
 };
