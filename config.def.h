@@ -67,7 +67,7 @@ static const char unknown_str[] = "  ";
  * wifi_state_icon     Either it's connected or not    interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function     format                           argument */
+  /* function     format                           argument */
   { netspeed_tx,      "󰅃 %s",                      "wlp0s20f3" },
   { separator,        "%s",                        "    "      },
   { netspeed_rx,      "󰅀 %s",                      "wlp0s20f3" },
@@ -80,7 +80,7 @@ static const struct arg args[] = {
   { separator,        "%s",                        "    "      },
   { datetime,         "%s",                        "%d %B %Y"  },
   { separator,        "%s",                        "    "      },
-	{ datetime,         "%s",                        "%H:%M"     },
+  { datetime,         "%s",                        "%H:%M"     },
   { separator,        "%s",                        "    "      },
   { datetime,         "^B2^^C0^ %s ^d^",           "Week %W"   },
 };
